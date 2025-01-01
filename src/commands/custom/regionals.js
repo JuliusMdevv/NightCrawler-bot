@@ -43,7 +43,7 @@ module.exports = {
             
 
             const regionalInfo = await fetchSheetData(regionalData.sheetTab, regionalData.range);
-            const formattedInfo = regionalInfo.replace(/,/g, '\n');
+            const formattedInfo = `${regionalInfo}`.replace(/,/g, '\n');
             await interaction.reply({
                 
                 content: formattedInfo,
