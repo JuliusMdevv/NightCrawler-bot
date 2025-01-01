@@ -20,7 +20,7 @@ async function fetchSheetData(sheetTab, range) {
         "Kansas": { sheetTab: "WEEK 5 - Greater Kansas City Regional", range: "F7:F16" },
         "Bayou": { sheetTab: "WEEK 6 - Bayou Regional", range: "G7:G16" }
     };
-
+    
 
 module.exports = {
     category: "custom",
@@ -40,10 +40,13 @@ module.exports = {
         async execute(interaction) {
             const selectedRegional = interaction.options.getString('regional');
             const regionalData = regionals[selectedRegional];
-    
+            
+
             const regionalInfo = await fetchSheetData(regionalData.sheetTab, regionalData.range);
+            const formattedInfo = regionalInfo.replace(/,/g, '\n');
             await interaction.reply({
-                content: regionalInfo.replace(/,/g, '\n'),
+                
+                content: formattedInfo,
                 ephemeral: true
             });
         }
