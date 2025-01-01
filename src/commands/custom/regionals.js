@@ -36,24 +36,15 @@ module.exports = {
                 ),
         ),
 
-
-
         
         async execute(interaction) {
-            const selectedRegional = interaction.options.getString('regionals');
+            const selectedRegional = interaction.options.getString('regional');
             const regionalData = regionals[selectedRegional];
-            console.log(regionalData);
-            console.log(regionals['Canadian-Pacific']);
-            console.log(selectedRegional);
-            console.log(interaction.options.data);
-            console.log(`Selected Regional: ${selectedRegional}`);
-            console.log(`Selected Regional: ${interaction.options.getString("regional")}`);
+    
             const regionalInfo = await fetchSheetData(regionalData.sheetTab, regionalData.range);
             await interaction.reply({
-                content: `Data for ${selectedRegional}: ${regionalInfo}`,
+                content: regionalInfo.replace(/,/g, '\n'),
                 ephemeral: true
             });
         }
-
-
 }
