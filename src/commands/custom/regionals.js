@@ -32,23 +32,23 @@ module.exports = {
                 .setDescription('Pick the regional you want info on')
                 .setRequired(true)
                 .addChoices(
-                    ...Object.keys(regionals).map(key => ({ name: key, value: key }))
-                )
+                    ...Object.keys(regionals).map(key => ({ name: key, value: key })),
+                ),
         ),
 
 
 
         
-    async execute(interaction) {
-        const selectedRegional = interaction.options.getString("regional");
-        const regionalData = await fetch(selectedRegional);
-
-        const regionalInfo = await fetchSheetData(regionalData.sheetTab, regionalData.range);
-    await interaction.reply({
-        content: `Data for ${selectedRegional}: ${regionalInfo}`,
-        ephemeral: true,
-    });
-    }
+        async execute(interaction) {
+            const selectedRegional = interaction.options.getString('regional');
+            const regionalData = regionals[selectedRegional];
+        
+            const regionalInfo = await fetchSheetData(regionalData.sheetTab, regionalData.range);
+            await interaction.reply({
+                content: `Data for ${selectedRegional}: ${regionalInfo}`,
+                ephemeral: true
+            });
+        }
 
 
 }
