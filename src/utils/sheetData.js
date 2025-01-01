@@ -25,6 +25,7 @@ async function fetchSheetData(sheetTab, range){
         throw new Error("Failed to fetch data from Google Sheets");
     }
     
+    
     const data = await response.json();
     const values = data.values || [0];
     return values || [];
