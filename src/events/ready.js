@@ -1,4 +1,5 @@
 const { Events } = require('discord.js');
+const { checkQueueStatus } = require('./queBCVI');
 
 module.exports = {
     name: Events.ClientReady,
