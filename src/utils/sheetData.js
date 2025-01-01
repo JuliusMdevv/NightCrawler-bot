@@ -29,4 +29,4 @@ async function fetchSheetData(sheetTab, range){
     const values = data.values || [0];
     return values || [];
 }
-module.exports = fetchSheetData();
+module.exports = fetchSheetData;
